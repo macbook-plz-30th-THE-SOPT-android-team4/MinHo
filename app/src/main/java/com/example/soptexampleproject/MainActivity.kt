@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
                 binding.idEdit.text.append(it.data?.getStringExtra("id") ?:"")
                 binding.passwordEdit.text.append(it.data?.getStringExtra("password") ?:"")
             }
+
             else{
                 Log.d("data", it.toString())
             }
