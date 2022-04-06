@@ -10,7 +10,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.soptexampleproject.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var getResultText:ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {

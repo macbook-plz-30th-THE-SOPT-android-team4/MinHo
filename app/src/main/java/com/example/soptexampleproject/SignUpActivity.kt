@@ -17,7 +17,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.signBtn.setOnClickListener {
 
             if(binding.nameEdit.text.isNotBlank()&&binding.idEdit.text.isNotBlank()&&binding.passwordEdit.text.isNotBlank()){
-                val intent = Intent(this, MainActivity::class.java).apply {
+                val intent = Intent(this, SignInActivity::class.java).apply {
                     putExtra("id", binding.idEdit.text.toString())
                     putExtra("password", binding.passwordEdit.text.toString())
                 }
