@@ -1,4 +1,4 @@
-package com.example.soptexampleproject
+package com.example.soptexampleproject.week2
 
 import java.io.Serializable
 

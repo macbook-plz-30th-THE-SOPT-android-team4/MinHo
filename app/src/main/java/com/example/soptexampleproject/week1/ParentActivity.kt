@@ -1,7 +1,9 @@
-package com.example.soptexampleproject
+package com.example.soptexampleproject.week1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import com.example.soptexampleproject.R
 import com.example.soptexampleproject.databinding.ActivityParentBinding
 
 class ParentActivity : AppCompatActivity() {
@@ -22,7 +24,12 @@ class ParentActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frag_container, fragment1)
             .commit()
+        binding.btnFrag.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                TODO("Not yet implemented")
+            }
 
+        })
         binding.btnFrag.setOnClickListener {
             val tran = supportFragmentManager.beginTransaction()
             when (position) {

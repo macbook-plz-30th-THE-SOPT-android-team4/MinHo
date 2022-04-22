@@ -1,4 +1,4 @@
-package com.example.soptexampleproject
+package com.example.soptexampleproject.week1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

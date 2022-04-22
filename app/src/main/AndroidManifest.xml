@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".RecyclerViewActivity"
+            android:name=".week2.RecyclerViewActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,20 +19,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ParentActivity"
+            android:name=".week1.ParentActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".week1.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".week1.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".EmptyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SignInActivity"
+            android:name=".week1.SignInActivity"
             android:exported="true"></activity>
     </application>
 
