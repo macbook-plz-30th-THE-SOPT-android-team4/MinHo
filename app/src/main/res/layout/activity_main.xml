@@ -4,34 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp"
+    android:paddingHorizontal="@dimen/app_base_space"
     tools:context=".week1.SignInActivity">
 
-    <TextView
-        android:id="@+id/main_tv"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/logo_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SOPT"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="42dp"
+        android:src="@drawable/img_github"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/id_tv"
+        style="@style/Widget.TitleTextView.Style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="아이디"
-        android:textColor="@color/black"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
+        android:text="깃허브 아이디"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_image" />
 
     <EditText
         android:id="@+id/id_edit"
+        style="@style/Widget.EditView.Style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="아이디를 입력해주세요"
@@ -41,16 +39,17 @@
 
     <TextView
         android:id="@+id/password_tv"
+        style="@style/Widget.TitleTextView.Style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="비밀번호"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/password_edit"
         app:layout_constraintTop_toBottomOf="@+id/id_edit" />
 
     <EditText
         android:id="@+id/password_edit"
+        style="@style/Widget.EditView.Style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="비밀번호를 입력해주세요"
@@ -61,21 +60,25 @@
 
     <Button
         android:id="@+id/login_btn"
+        style="@style/Widget.SignButton.Style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="7dp"
+        android:backgroundTint="@color/sopt_main_purple"
+        android:text="로그인"
+        app:layout_constraintBottom_toTopOf="@+id/signup_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_edit" />
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/signup_btn"
+        style="@style/Widget.SignButton.Style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/app_base_space"
+        android:backgroundTint="@color/sopt_sub_purple"
         android:text="회원가입"
-        android:backgroundTint="@color/material_on_surface_disabled"
-        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

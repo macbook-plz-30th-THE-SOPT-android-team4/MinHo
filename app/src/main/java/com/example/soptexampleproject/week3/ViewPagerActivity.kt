@@ -21,14 +21,15 @@ class ViewPagerActivity : AppCompatActivity() {
     }
 
     private fun initBottomNavi() {
-        binding.myViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+        binding.myViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.myNavi.menu.getItem(position).isChecked = true
             }
         })
         binding.myNavi.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.menu_android -> {
                     binding.myViewPager.currentItem = FIRST_FRAGMENT
                     return@setOnItemSelectedListener true
@@ -38,7 +39,7 @@ class ViewPagerActivity : AppCompatActivity() {
                     binding.myViewPager.currentItem = SECOND_FRAGMENT
                     return@setOnItemSelectedListener true
                 }
-                else ->{
+                else -> {
                     binding.myViewPager.currentItem = THIRD_FRAGMENT
                     return@setOnItemSelectedListener true
                 }
@@ -49,11 +50,12 @@ class ViewPagerActivity : AppCompatActivity() {
 
     private fun initAdapter() {
         val fragment = listOf(PagerFragment1(), PagerFragment2(), PagerFragment3())
-        adapter  = ViewPagerAdapter(this)
+        adapter = ViewPagerAdapter(this)
         adapter.fragments.addAll(fragment)
         binding.myViewPager.adapter = adapter
     }
-    companion object{
+
+    companion object {
         const val FIRST_FRAGMENT = 0
         const val SECOND_FRAGMENT = 1
         const val THIRD_FRAGMENT = 2

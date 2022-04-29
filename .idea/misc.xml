@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/shape_bordor_radius_5.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/shape_bordor_selector_radius_5.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/select_color.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/shape_bordor_radius.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/shape_bordor_radius_5.xml" value="0.118" />
         <entry key="app/src/main/res/layout/activity_empty.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_parent.xml" value="0.2869791666666667" />
         <entry key="app/src/main/res/layout/activity_recycler_view.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
