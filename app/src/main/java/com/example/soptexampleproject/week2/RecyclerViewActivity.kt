@@ -22,8 +22,6 @@ class RecyclerViewActivity : AppCompatActivity() {
             .add(R.id.fragContainer, fragment)
             .commit()
         binding.btnFollower.setOnClickListener {
-
-
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragContainer, fragment)
                 .commit()
@@ -33,6 +31,5 @@ class RecyclerViewActivity : AppCompatActivity() {
                 .replace(R.id.fragContainer, fragment2)
                 .commit()
         }
-
     }
 }

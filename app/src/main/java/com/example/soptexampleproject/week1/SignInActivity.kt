@@ -19,7 +19,6 @@ class SignInActivity : AppCompatActivity() {
         getResultText =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == RESULT_OK) {
-                    Log.d("data", "complete")
                     binding.idEdit.text.append(it.data?.getStringExtra("id") ?: "")
                     binding.passwordEdit.text.append(it.data?.getStringExtra("password") ?: "")
                 } else {
