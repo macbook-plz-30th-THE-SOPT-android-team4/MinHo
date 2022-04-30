@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,24 +26,32 @@ class RepoFragment : Fragment() {
 
 
 
-        adapter = RepoAdapter()
-        adapter.userList.addAll(
-            listOf(
-                RepoData("Lee", "Minho"),
-                RepoData("sad", "Hi Hello"),
-                RepoData("Kim", "Minho"),
-                RepoData("Lsad", "Bye"),
-                RepoData("sad", "Minho"),
-                RepoData("ppLee", "Minho"),
-                RepoData("Lee", "asdasdasdsa")
-            )
-        )
-        binding.recyclerRepo.adapter = adapter
-        binding.recyclerRepo.layoutManager = GridLayoutManager(context, 2)
-        adapter.notifyDataSetChanged()
+        bindingViews(binding)
         return binding.root
     }
 
+    fun bindingViews(binding:FragmentRepoBinding){
+
+        adapter = RepoAdapter()
+        adapter.userList.addAll(
+            listOf(
+                RepoData("안드로이드 과제 레포지토리1", "안드로이드 파트 과제"),
+                RepoData("안드로이드 과제 레포지토리2", "안드로이드 파트 과제"),
+                RepoData("안드로이드 과제 레포지토리3", "안드로이드 파트 과제"),
+                RepoData("안드로이드 과제 레포지토리4", "안드로이드 파트 과제"),
+                RepoData("안드로이드 과제 레포지토리5", "안드로이드 파트 과제"),
+                RepoData("안드로이드 과제 레포지토리6", "안드로이드 파트 과제"),
+                RepoData("안드로이드 과제 레포지토리7", "안드로이드 파트 과제")
+            )
+        )
+        binding.recyclerRepo.adapter = adapter
+        binding.recyclerRepo.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                LinearLayoutManager(context).orientation
+            )
+        )
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

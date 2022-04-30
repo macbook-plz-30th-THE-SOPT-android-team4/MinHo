@@ -1,4 +1,4 @@
-package com.example.soptexampleproject.week3.model
+package com.example.soptexampleproject.data.model
 
 import java.io.Serializable
 

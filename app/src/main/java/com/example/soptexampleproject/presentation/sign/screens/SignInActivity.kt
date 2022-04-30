@@ -1,4 +1,4 @@
-package com.example.soptexampleproject.week1
+package com.example.soptexampleproject.presentation.sign.screens
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.soptexampleproject.databinding.ActivityMainBinding
+import com.example.soptexampleproject.week2.RecyclerViewActivity
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -22,20 +23,19 @@ class SignInActivity : AppCompatActivity() {
                     binding.idEdit.text.append(it.data?.getStringExtra("id") ?: "")
                     binding.passwordEdit.text.append(it.data?.getStringExtra("password") ?: "")
                 } else {
-                    Log.d("data", it.toString())
+
                 }
             }
         binding.loginBtn.setOnClickListener {
             if (binding.idEdit.text.isNotBlank() && binding.passwordEdit.text.isNotBlank()) {
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, RecyclerViewActivity::class.java)
                 startActivity(intent)
             }
         }
         binding.signupBtn.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             getResultText.launch(intent)
-            //startActivity(intent)
         }
     }
 

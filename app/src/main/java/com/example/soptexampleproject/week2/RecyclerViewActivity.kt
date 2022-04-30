@@ -7,6 +7,7 @@ import com.example.soptexampleproject.databinding.ActivityRecyclerViewBinding
 
 class RecyclerViewActivity : AppCompatActivity() {
     lateinit var binding: ActivityRecyclerViewBinding
+    var isEnabled = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecyclerViewBinding.inflate(layoutInflater)
@@ -17,6 +18,8 @@ class RecyclerViewActivity : AppCompatActivity() {
     private fun init() {
         var fragment = FollwerFragment()
         var fragment2 = RepoFragment()
+        binding.btnFollower.isEnabled = isEnabled
+        binding.btnRepo.isEnabled = !isEnabled
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragContainer, fragment)
@@ -25,11 +28,17 @@ class RecyclerViewActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragContainer, fragment)
                 .commit()
+            isEnabled=false
+            binding.btnFollower.isEnabled = isEnabled
+            binding.btnRepo.isEnabled = !isEnabled
         }
         binding.btnRepo.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragContainer, fragment2)
                 .commit()
+            isEnabled=true
+            binding.btnFollower.isEnabled = isEnabled
+            binding.btnRepo.isEnabled = !isEnabled
         }
     }
 }

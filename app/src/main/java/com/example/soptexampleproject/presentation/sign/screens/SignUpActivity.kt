@@ -1,4 +1,4 @@
-package com.example.soptexampleproject.week1
+package com.example.soptexampleproject.presentation.sign.screens
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -16,15 +16,15 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signBtn.setOnClickListener {
 
-            if(binding.nameEdit.text.isNotBlank()&&binding.idEdit.text.isNotBlank()&&binding.passwordEdit.text.isNotBlank()){
+            if (binding.nameEdit.text.isNotBlank() && binding.idEdit.text.isNotBlank() && binding.passwordEdit.text.isNotBlank()) {
                 val intent = Intent(this, SignInActivity::class.java).apply {
                     putExtra("id", binding.idEdit.text.toString())
                     putExtra("password", binding.passwordEdit.text.toString())
                 }
                 setResult(RESULT_OK, intent)
                 finish()
-            }else{
-                Toast.makeText(this,"입력되지 않은 정보가 있습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "입력되지 않은 정보가 있습니다.", Toast.LENGTH_SHORT).show()
             }
 
         }

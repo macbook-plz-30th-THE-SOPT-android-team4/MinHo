@@ -1,4 +1,4 @@
-package com.example.soptexampleproject.week3
+package com.example.soptexampleproject.presentation.home.screens.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

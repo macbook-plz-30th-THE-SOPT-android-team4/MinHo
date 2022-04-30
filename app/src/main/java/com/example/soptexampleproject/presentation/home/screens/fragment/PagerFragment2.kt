@@ -15,6 +15,6 @@ class PagerFragment2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pager2_semiar3, container, false)
+        return inflater.inflate(R.layout.fragment_pager_setting, container, false)
     }
 }

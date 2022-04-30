@@ -1,11 +1,10 @@
-package com.example.soptexampleproject.week3.adapter
+package com.example.soptexampleproject.presentation.home.screens.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.soptexampleproject.databinding.ItemRepositoryIndexBinding
+import com.example.soptexampleproject.data.model.UserData
 import com.example.soptexampleproject.databinding.ItemSampleListBinding
-import com.example.soptexampleproject.week3.model.UserData
 
 class FollowerAdapter:RecyclerView.Adapter<FollowerAdapter.MyViewHolder>() {
 

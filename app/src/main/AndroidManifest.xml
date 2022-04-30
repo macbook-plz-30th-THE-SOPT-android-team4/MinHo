@@ -16,24 +16,20 @@
         <activity
             android:name=".week2.RecyclerViewActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".week1.ParentActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".week1.SignUpActivity"
+            android:name=".presentation.sign.screens.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".week1.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".week1.SignInActivity"
+            android:name=".presentation.sign.screens.SignInActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -7,24 +7,30 @@
         <entry key="app/src/main/res/drawable-v24/shape_bordor_selector_radius_5.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/select_color.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/shape_border_selector_btn_radius_5.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_bordor_radius.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_bordor_radius_5.xml" value="0.118" />
         <entry key="app/src/main/res/layout/activity_empty.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_parent.xml" value="0.2869791666666667" />
-        <entry key="app/src/main/res/layout/activity_recycler_view.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_recycler_view.xml" value="0.1695556640625" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_view_pager.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.2869791666666667" />
         <entry key="app/src/main/res/layout/fragment_blank2.xml" value="0.2869791666666667" />
         <entry key="app/src/main/res/layout/fragment_follwer.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_pager1.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/fragment_pager1_semiar3.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_pager2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_pager2_semiar3.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_pager3.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/fragment_pager3_semiar3.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_pager_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_pager_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_repo.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/item_repository_index.xml" value="0.24713439941406257" />
-        <entry key="app/src/main/res/layout/item_sample_list.xml" value="0.22730515091507525" />
+        <entry key="app/src/main/res/layout/item_sample_list.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_sample.xml" value="0.1" />
       </map>
     </option>
