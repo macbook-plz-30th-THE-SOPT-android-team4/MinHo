@@ -1,4 +1,4 @@
-package com.example.soptexampleproject.week2
+package com.example.soptexampleproject.presentation.home.screens.fragment.profilechildfragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.soptexampleproject.R
+import com.example.soptexampleproject.data.model.RepoData
 import com.example.soptexampleproject.databinding.FragmentRepoBinding
 
 class RepoFragment : Fragment() {

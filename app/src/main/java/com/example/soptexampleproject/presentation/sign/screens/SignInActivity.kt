@@ -7,15 +7,15 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.soptexampleproject.databinding.ActivityMainBinding
-import com.example.soptexampleproject.week2.RecyclerViewActivity
+import com.example.soptexampleproject.databinding.ActivitySignInBinding
+import com.example.soptexampleproject.presentation.home.screens.ViewPagerActivity
 
 class SignInActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivitySignInBinding
     private lateinit var getResultText: ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getResultText =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -29,7 +29,7 @@ class SignInActivity : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
             if (binding.idEdit.text.isNotBlank() && binding.passwordEdit.text.isNotBlank()) {
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, RecyclerViewActivity::class.java)
+                val intent = Intent(this, ViewPagerActivity::class.java)
                 startActivity(intent)
             }
         }

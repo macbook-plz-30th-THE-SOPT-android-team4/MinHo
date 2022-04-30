@@ -1,4 +1,4 @@
-package com.example.soptexampleproject.week2
+package com.example.soptexampleproject.presentation.home.screens.fragment.profilechildfragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.soptexampleproject.R
+import com.example.soptexampleproject.data.model.UserData
 import com.example.soptexampleproject.databinding.FragmentFollwerBinding
 
 class FollwerFragment : Fragment() {

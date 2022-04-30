@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".week2.RepoFragment">
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerRepo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="4"
         tools:listitem="@layout/item_repository_index"
         app:layout_constraintBaseline_toTopOf="parent" />
 

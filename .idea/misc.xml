@@ -6,6 +6,9 @@
         <entry key="app/src/main/res/drawable-v24/shape_bordor_radius_5.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/shape_bordor_selector_radius_5.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/list_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/preference_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/select_color.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_border_selector_btn_radius_5.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_bordor_radius.xml" value="0.1" />
@@ -26,9 +29,12 @@
         <entry key="app/src/main/res/layout/fragment_pager2_semiar3.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_pager3.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_pager3_semiar3.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_pager_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_pager_list.xml" value="0.19230769230769232" />
         <entry key="app/src/main/res/layout/fragment_pager_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_pager_setting.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_repo.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/layout/fragment_tab1.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_tab2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_repository_index.xml" value="0.24713439941406257" />
         <entry key="app/src/main/res/layout/item_sample_list.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_sample.xml" value="0.1" />

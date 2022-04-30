@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".week3.ViewPagerActivity"
-            android:exported="true">
-        </activity>
+            android:name=".presentation.sign.screens.SignUpActivity"
+            android:exported="true"></activity>
+
         <activity
-            android:name=".week2.RecyclerViewActivity"
+            android:name=".presentation.home.screens.ViewPagerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,15 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.sign.screens.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".week1.HomeActivity"
-            android:exported="false" />
-        <activity
             android:name=".presentation.sign.screens.SignInActivity"
             android:exported="true">
+
         </activity>
+
     </application>
 
 </manifest>
