@@ -7,7 +7,7 @@
     tools:context=".week3.Fragment.PagerFragmentProfile">
 
     <ImageView
-        android:id="@+id/imageViewCoil"
+        android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginTop="100dp"
