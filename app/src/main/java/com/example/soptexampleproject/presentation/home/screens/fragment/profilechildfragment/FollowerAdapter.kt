@@ -10,7 +10,7 @@ class FollowerAdapter:RecyclerView.Adapter<FollowerAdapter.MyViewHolder>() {
 
     private val _userList= mutableListOf<UserData>()
 
-     val userList get() = _userList!!
+    val userList get() = _userList!!
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemSampleListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
