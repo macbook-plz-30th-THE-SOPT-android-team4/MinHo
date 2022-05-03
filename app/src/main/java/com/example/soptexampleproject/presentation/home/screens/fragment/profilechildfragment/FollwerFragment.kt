@@ -11,7 +11,7 @@ import com.example.soptexampleproject.data.model.UserData
 import com.example.soptexampleproject.databinding.FragmentFollwerBinding
 
 class FollwerFragment : Fragment() {
-    private var _binding: FragmentFollwerBinding? = null
+    private lateinit var _binding: FragmentFollwerBinding
     private val binding get() = _binding!!
     private lateinit var adapter: FollowerAdapter
     override fun onCreateView(
