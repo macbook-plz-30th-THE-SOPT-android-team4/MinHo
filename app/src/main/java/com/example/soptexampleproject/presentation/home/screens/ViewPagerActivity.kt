@@ -3,12 +3,20 @@ package com.example.soptexampleproject.presentation.home.screens
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.example.soptexampleproject.R
 import com.example.soptexampleproject.databinding.ActivityViewPagerBinding
 import com.example.soptexampleproject.presentation.home.screens.fragment.FragmentChangeAdapter
+import com.example.soptexampleproject.week3.Fragment.PagerFragmentList
+import com.example.soptexampleproject.week3.Fragment.PagerFragmentProfile
+import com.example.soptexampleproject.week3.Fragment.PagerFragmentSetting
 
 class ViewPagerActivity : AppCompatActivity() {
     private lateinit var adapter: FragmentChangeAdapter
+    private val myFragments =
+        listOf<Fragment>(PagerFragmentProfile(), PagerFragmentList(), PagerFragmentSetting())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityViewPagerBinding.inflate(layoutInflater).run {
@@ -18,7 +26,7 @@ class ViewPagerActivity : AppCompatActivity() {
     }
 
     private fun bindingView(binding: ActivityViewPagerBinding) {
-        adapter = FragmentChangeAdapter(this)
+        adapter = FragmentChangeAdapter(this, myFragments)
         binding.myViewPager.adapter = adapter
         binding.myNavi.setOnItemSelectedListener {
             when (it.itemId) {
@@ -36,6 +44,13 @@ class ViewPagerActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.myViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                binding.myNavi.menu.getItem(position).isChecked = true
+            }
+        })
     }
 
     companion object {

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewGithub"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="40dp"
@@ -35,24 +36,29 @@
         android:id="@+id/tabLayoutGithub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:tabIndicatorColor="@color/sopt_main_purple"
-        app:tabIndicatorHeight="3dp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:tabIndicatorHeight="3dp">
+
         <com.google.android.material.tabs.TabItem
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="팔로잉"
-            />
+            android:text="팔로잉" />
+
         <com.google.android.material.tabs.TabItem
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="팔로워"
-            />
+            android:text="팔로워" />
     </com.google.android.material.tabs.TabLayout>
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragContainerGithub"
+
+    <com.example.soptexampleproject.presentation.components.NestedScrollableHost
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayoutGithub">
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerGithub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    </com.example.soptexampleproject.presentation.components.NestedScrollableHost>
 </androidx.constraintlayout.widget.ConstraintLayout>

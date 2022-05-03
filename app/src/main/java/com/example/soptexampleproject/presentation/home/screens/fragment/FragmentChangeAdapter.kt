@@ -7,13 +7,11 @@ import com.example.soptexampleproject.week3.Fragment.PagerFragmentList
 import com.example.soptexampleproject.week3.Fragment.PagerFragmentProfile
 import com.example.soptexampleproject.week3.Fragment.PagerFragmentSetting
 
-class FragmentChangeAdapter(fragmentActivity: FragmentActivity) :
+class FragmentChangeAdapter(fragmentActivity: FragmentActivity, fragmentList: List<Fragment>) :
     FragmentStateAdapter(fragmentActivity) {
-    private val myFragment =
-        listOf<Fragment>(PagerFragmentProfile(), PagerFragmentList(), PagerFragmentSetting())
-
+    private val myFragment = fragmentList
     override fun getItemCount(): Int {
-        return 3
+        return myFragment.size
     }
 
     override fun createFragment(position: Int): Fragment {

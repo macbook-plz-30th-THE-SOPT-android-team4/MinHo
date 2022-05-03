@@ -26,7 +26,6 @@ class PagerFragmentSetting : Fragment() {
         bindingView()
         return binding.root
     }
-
     private fun bindingView() {
         binding.btnUpload.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
@@ -46,7 +45,6 @@ class PagerFragmentSetting : Fragment() {
             }
         }
     }
-
     companion object {
         const val REQUEST_IMAGE_OPEN = 1
     }
