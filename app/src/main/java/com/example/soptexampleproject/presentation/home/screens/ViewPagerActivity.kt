@@ -30,19 +30,11 @@ class ViewPagerActivity : AppCompatActivity() {
         binding.myViewPager.adapter = adapter
         binding.myNavi.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_android -> {
-                    binding.myViewPager.currentItem = FIRST_FRAGMENT
-                    return@setOnItemSelectedListener true
-                }
-                R.id.menu_list -> {
-                    binding.myViewPager.currentItem = SECOND_FRAGMENT
-                    return@setOnItemSelectedListener true
-                }
-                else -> {
-                    binding.myViewPager.currentItem = THIRD_FRAGMENT
-                    return@setOnItemSelectedListener true
-                }
+                R.id.menu_android -> binding.myViewPager.currentItem = FIRST_FRAGMENT
+                R.id.menu_list -> binding.myViewPager.currentItem = SECOND_FRAGMENT
+                else -> binding.myViewPager.currentItem = THIRD_FRAGMENT
             }
+            return@setOnItemSelectedListener true
         }
         binding.myViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
