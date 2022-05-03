@@ -39,10 +39,8 @@ class PagerFragmentSetting : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_OPEN && resultCode == Activity.RESULT_OK) {
-            val fullPhotoUri: Uri? = data?.data
-            if (fullPhotoUri != null) {
-                binding.imageViewCoil.load(fullPhotoUri)
-            }
+            val fullPhotoUri: Uri? = data?.data ?: return
+            binding.imageViewCoil.load(fullPhotoUri)
         }
     }
     companion object {
