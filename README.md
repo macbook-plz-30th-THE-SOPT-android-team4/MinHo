@@ -1,88 +1,99 @@
-# 1차 세미나 과제
----
-## 필수 과제 1-1 (로그인 페이지 만들기)
+
+## 필수 과제 1-1, 1-2
 
 ### 구현한 코드를 설명하는 내용
-- 세미나 때와 크게 달라진 내용이 없으며, 회원가입 버튼만 추가한 후 액티비티 이동 및 이름만 바꿔주었습니다.
+- activity_home.xml 파일을 가져와 자기소개 부분을 더하였음
+- 임의의 버튼 2개를 만들어서 실습 때 했던 FragmentContainerView에 버튼을 누를 때마다 transaction(replace)가 되게 해주었음
+- 레파지토리 목록에서 보여주는 리싸이클러뷰는 LayoutManager에서 런타임(애매)시에 바꾸게 해주었음.
 
-### 이번 과제를 통해 배운 내용
-- 예쁜 색 찾기가 너무 어렵다...
 
-### 실행 화면
-<img width="150" alt="스크린샷 2022-04-07 오전 3 32 45" src="https://user-images.githubusercontent.com/15981307/162044308-1f6aa427-0e00-456e-a94f-d539f209d4ee.png">
+### 실행화면
 
----
+<img width="150" alt="스크린샷 2022-04-23 오전 2 56 23" src="https://user-images.githubusercontent.com/15981307/164768926-f594c63e-9fe9-4195-8718-e4ef62773403.png"><img width="150" alt="스크린샷 2022-04-23 오전 2 56 56" src="https://user-images.githubusercontent.com/15981307/164769002-f3a13c5d-1bca-4148-bdae-fe26dd49069a.png">
 
-## 필수 과제 1-2 (회원가입 페이지 만들기)
 
+
+## 성장 과제 2-2
 ### 구현한 코드를 설명하는 내용
-- 로그인 화면 xml을 다 가져오고 텍스트만 수정해주었습니다.
+- ItemDecoration은 사용하지 않았지만, Drawable 폴더에 테두리 선, radius적용, 그라데이션 효과 적용하였음
+- 아이템 간 간격은 리스트 아이템에서 margin으로 주었음
+### 실행화면
+<img width="150" alt="스크린샷 2022-04-23 오전 3 01 28" src="https://user-images.githubusercontent.com/15981307/164769604-fc3c5150-bc04-4c7f-83d8-e118541c321b.png">
 
-### 이번 과제를 통해 배운 내용
-- ConstraintLayout에 익숙해지는 시간을 가졌습니다.
 
-### 실행 화면
+## 도전 과제 3-2(?) notify
+### notifyDataSetChanged 문제점
+#### 시간이 없어 직접 구현하진 못했습니다 ㅜㅜ 하지만 이론은 알고 있습니다!
 
-<img width="150" alt="스크린샷 2022-04-07 오전 3 38 15" src="https://user-images.githubusercontent.com/15981307/162045243-a677b1a5-98f2-4af5-ab8b-ec3880df8f2c.png">
+- notifyDataSetChanged는 사실상 리스트를 싹 지우고 다시 처음부터 끝까지 객체를 하나하나 만들어 새로 렌더링하는 과정을 거치게 되는 것이나 마찬가지이다. 
+- 때문에 비용이 매우 크게 발생한다. 따라서 효율적으로 동적인 리사이클러뷰를 구성하는 방법이 필요했다.
 
----
-## 필수 과제 1-3 (자기소개 페이지 만들기) + 성장 과제 2-2
+### 먼저 싹 지운다는 것을 증명해주는 RecyclerView 내부 코드를 살펴보자
+```java
+public final void notifyDataSetChanged() {
+            mObservable.notifyChanged();
+        }
 
-### 구현한 코드를 설명하는 내용
-- ScrollView 추가하였으며, 사진이 옆이 잘려서 나온거지 constraintDimensionRatio로 1:1 비율 맞춰주었습니다. 너비에 따른 높이 1:1
-
-### 이번 과제를 통해 배운 내용
-- ScrollView가 Child를 하나만 넣을 수 있다는 것을 알게되었습니다.
-
-### 실행 화면
-
-<img width="150" alt="스크린샷 2022-04-07 오전 3 41 08" src="https://user-images.githubusercontent.com/15981307/162045685-6ed79537-6b05-4e0d-99fd-3371723f35c5.png">
-
----
-## 성장 과제 2-1
-
-### 구현한 코드를 설명하는 내용
-
-- SignInActivity.kt
-``` kotlin
-getResultText= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-  if(it.resultCode== RESULT_OK){
-  Log.d("data", "complete")
-  binding.idEdit.text.append(it.data?.getStringExtra("id") ?:"")
-  binding.passwordEdit.text.append(it.data?.getStringExtra("password") ?:"")
-  }
-  else{
-    Log.d("data", it.toString())
-    }
-  }//콜백 함수를 만들어놓는다.
+public void notifyChanged() {
+            // since onChanged() is implemented by the app, it could do anything, including
+            // removing itself from {@link mObservers} - and that could cause problems if
+            // an iterator is used on the ArrayList {@link mObservers}.
+            // to avoid such problems, just march thru the list in the reverse order.
+            for (int i = mObservers.size() - 1; i >= 0; i--) {
+                mObservers.get(i).onChanged();
+            }
+        }
 ```
-- 이후 SignUpActivity로 이동할 때 launch(intent)로 getResultText를 붙여준다.
+#### 보다시피 for문을 통해서 맨 뒤에서부터 첫번째까지 탐색하는 코드를 가지고 있기 때문에 비효율적이라는 것이다.
 
-``` kotlin
-binding.signupBtn.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java )
-            getResultText.launch(intent)
-            //startActivity(intent)
+#### 만약 변화가 일어나는 데이터의 위치를 안다면 다음과 같은 메소드를 사용해라(notifyItemChanged)
+```java
+public final void notifyItemChanged(int position) {
+            mObservable.notifyItemRangeChanged(position, 1);
+        }
+public void notifyItemRangeChanged(int positionStart, int itemCount) {
+            notifyItemRangeChanged(positionStart, itemCount, null);
+        }
+
+public void notifyItemRangeChanged(int positionStart, int itemCount,
+                @Nullable Object payload) {
+            // since onItemRangeChanged() is implemented by the app, it could do anything, including
+            // removing itself from {@link mObservers} - and that could cause problems if
+            // an iterator is used on the ArrayList {@link mObservers}.
+            // to avoid such problems, just march thru the list in the reverse order.
+            for (int i = mObservers.size() - 1; i >= 0; i--) {
+                mObservers.get(i).onItemRangeChanged(positionStart, itemCount, payload);
+            }
         }
 ```
 
-- SignUpActivity.kt
-``` kotlin
-val intent = Intent(this, SignInActivity::class.java).apply {
-  putExtra("id", binding.idEdit.text.toString())
-  putExtra("password", binding.passwordEdit.text.toString())
-  }
-setResult(RESULT_OK, intent)  //intent와 Result 값을 넣어준다.
-finish()
+### 요즘은 데이터의 변화에 대해서 DiffUtil를 사용하여 성능을 향상시킨다.
+- Eugene W. Myers’s의 차분 알고리즘을 이용함
+- 특정 위치를 몰라도 된다.
+- 이전 데이터 상태와 현재 데이터간의 상태 차이를 찾고 업데이트 되어야 할 목록을 반환해줍니다.
+- RecyclerView 어댑터에 대한 업데이트를 알리는데 사용됩니다.
+- DiffUtil.Callback 추상 클래스를 콜백 클래스로 활용
+- 목록이 많으면 작업에 상당한 시간이 걸릴 수 있으므로 백그라운드 스레드에서 실행하고 DiffUtil.DiffResult를 가져와서 메인스레드(UI스레드)의 RecyclerView에 적용세요. 또한 구현 제약으로 목록의 최대 크기는 2²⁶개로 제한되어 있습니다.
+```kotlin
+class DiffUtilCallback(private val oldList: List<Any>, private val newList: List<Any>) :
+    DiffUtil.Callback() {
+    override fun getOldListSize(): Int = oldList.size
+
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldItem = oldList[oldItemPosition]
+        val newItem = newList[newItemPosition]
+
+        return if (oldItem is Person && newItem is Person) {
+            oldItem.id == newItem.id
+        } else {
+            false
+        }
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition] == newList[newItemPosition]
+}
+
 ```
-### 이번 과제를 통해 배운 내용
-- registerForActivityResult가 생각보다 많이 편하다는것을 알게 되었습니다.
-- 회원가입시 id, password의 SigninActivity의 editText를 비워주는 것을 까먹었었다.
-
-### 실행 화면
-
-- 회원정보 입력
-<img width="150" alt="스크린샷 2022-04-07 오전 3 48 25" src="https://user-images.githubusercontent.com/15981307/162046881-bda820c3-c404-4d86-9ffc-e96cb33d096d.png">
-
-- 회원가입 완료 시
-<img width="150" alt="스크린샷 2022-04-07 오전 3 49 25" src="https://user-images.githubusercontent.com/15981307/162047025-35e8b74a-57f8-457b-aeb6-4cb261828f4f.png">
