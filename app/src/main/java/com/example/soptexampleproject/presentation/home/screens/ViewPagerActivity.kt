@@ -21,11 +21,11 @@ class ViewPagerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ActivityViewPagerBinding.inflate(layoutInflater).run {
             setContentView(root)
-            bindingView(this)
+            initbindingView(this)
         }
     }
 
-    private fun bindingView(binding: ActivityViewPagerBinding) {
+    private fun initbindingView(binding: ActivityViewPagerBinding) {
         adapter = FragmentChangeAdapter(this, myFragments)
         binding.myViewPager.adapter = adapter
         binding.myNavi.setOnItemSelectedListener {

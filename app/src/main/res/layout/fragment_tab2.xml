@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.home.screens.fragment.listchildfragment.TabFragment2">
+    tools:context=".presentation.home.screens.fragment.listchildfragment.Tab2">
+
     <TextView
+        style="@style/Widget.TitleTextView.Style"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textColor="@color/gray_600"
-        style="@style/Widget.TitleTextView.Style"
-        android:text="준비중일겁니다" />
+        android:text="준비중일겁니다"
+        android:textColor="@color/gray_600" />
 
 </LinearLayout>

@@ -22,8 +22,6 @@ class SignInActivity : AppCompatActivity() {
                 if (it.resultCode == RESULT_OK) {
                     binding.idEdit.text.append(it.data?.getStringExtra("id") ?: "")
                     binding.passwordEdit.text.append(it.data?.getStringExtra("password") ?: "")
-                } else {
-
                 }
             }
         binding.loginBtn.setOnClickListener {

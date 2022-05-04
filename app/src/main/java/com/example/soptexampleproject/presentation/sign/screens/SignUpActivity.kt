@@ -12,10 +12,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         binding.signBtn.setOnClickListener {
-
             if (binding.nameEdit.text.isNotBlank() && binding.idEdit.text.isNotBlank() && binding.passwordEdit.text.isNotBlank()) {
                 val intent = Intent(this, SignInActivity::class.java).apply {
                     putExtra("id", binding.idEdit.text.toString())

@@ -7,10 +7,7 @@ import com.example.soptexampleproject.data.model.RepoData
 import com.example.soptexampleproject.databinding.ItemRepositoryIndexBinding
 
 class RepoAdapter : RecyclerView.Adapter<RepoAdapter.MyViewHolder>() {
-
-
     private val _userList = mutableListOf<RepoData>()
-
     val userList get() = _userList!!
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

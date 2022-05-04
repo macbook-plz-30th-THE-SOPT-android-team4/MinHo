@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.soptexampleproject.data.model.RepoData
 import com.example.soptexampleproject.databinding.FragmentRepoBinding
 
-class RepoFragment : Fragment() {
+class Repo : Fragment() {
     private var _binding: FragmentRepoBinding? = null
     private val binding get() = _binding!!
 
@@ -18,18 +18,13 @@ class RepoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentRepoBinding.inflate(inflater, container, false)
-
-
-
         bindingViews(binding)
         return binding.root
     }
 
     fun bindingViews(binding:FragmentRepoBinding){
-
         adapter = RepoAdapter()
         adapter.userList.addAll(
             listOf(

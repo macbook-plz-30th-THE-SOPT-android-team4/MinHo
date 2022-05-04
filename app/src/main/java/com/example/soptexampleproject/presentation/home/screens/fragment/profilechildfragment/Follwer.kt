@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.soptexampleproject.data.model.UserData
 import com.example.soptexampleproject.databinding.FragmentFollwerBinding
 
-class FollwerFragment : Fragment() {
-    private lateinit var _binding: FragmentFollwerBinding
+class Follwer : Fragment() {
+    private var _binding: FragmentFollwerBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: FollowerAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFollwerBinding.inflate(layoutInflater, container, false)
         bindingView(binding)
         return binding.root
@@ -44,12 +44,10 @@ class FollwerFragment : Fragment() {
             )
         )
         binding.recyclerFollower.adapter = adapter
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }
