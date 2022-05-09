@@ -46,6 +46,7 @@
 
     <style name="Widget.TitleTextView.TextAppearance" parent="">
         <item name="android:textColor">@color/gray_900</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:fontFamily">@font/noto_bold</item>
         <item name="android:textSize">@dimen/font_size_4</item>
     </style>
