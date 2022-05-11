@@ -2,7 +2,6 @@ package com.example.soptexampleproject.presentation.home.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.soptexampleproject.R
@@ -16,16 +15,18 @@ class ViewPagerActivity : AppCompatActivity() {
     private lateinit var adapter: FragmentChangeAdapter
     private val myFragments =
         listOf<Fragment>(PagerFragmentProfile(), PagerFragmentList(), PagerFragmentSetting())
-
+    lateinit var user:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityViewPagerBinding.inflate(layoutInflater).run {
             setContentView(root)
-            initbindingView(this)
+            bindingView(this)
         }
+        user = intent.getStringExtra("username").toString()
     }
 
-    private fun initbindingView(binding: ActivityViewPagerBinding) {
+
+    private fun bindingView(binding: ActivityViewPagerBinding) {
         adapter = FragmentChangeAdapter(this, myFragments)
         binding.myViewPager.adapter = adapter
         binding.myNavi.setOnItemSelectedListener {

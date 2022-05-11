@@ -1,4 +1,4 @@
-package com.example.soptexampleproject.presentation.sign
+package com.example.soptexampleproject.data.remote.sign.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

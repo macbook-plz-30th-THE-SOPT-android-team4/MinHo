@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.soptexampleproject.databinding.ActivitySignUpBinding
-import com.example.soptexampleproject.presentation.sign.RequestSignUp
-import com.example.soptexampleproject.presentation.sign.ResponseSignUp
-import com.example.soptexampleproject.presentation.sign.ServiceCreator
+import com.example.soptexampleproject.data.remote.sign.models.RequestSignUp
+import com.example.soptexampleproject.data.remote.sign.models.ResponseSignUp
+import com.example.soptexampleproject.data.remote.ServiceCreator
 import com.example.soptexampleproject.util.ResponseWrapper
 import retrofit2.Call
 import retrofit2.Callback

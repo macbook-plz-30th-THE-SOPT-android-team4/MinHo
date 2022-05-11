@@ -1,5 +1,9 @@
-package com.example.soptexampleproject.presentation.sign
+package com.example.soptexampleproject.data.remote.sign
 
+import com.example.soptexampleproject.data.remote.sign.models.RequestSignIn
+import com.example.soptexampleproject.data.remote.sign.models.RequestSignUp
+import com.example.soptexampleproject.data.remote.sign.models.ResponseSignIn
+import com.example.soptexampleproject.data.remote.sign.models.ResponseSignUp
 import com.example.soptexampleproject.util.ResponseWrapper
 import retrofit2.Call
 import retrofit2.http.Body
