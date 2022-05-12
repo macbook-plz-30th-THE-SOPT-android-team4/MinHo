@@ -56,8 +56,6 @@ class SignInActivity : AppCompatActivity() {
 
         val call: Call<ResponseWrapper<ResponseSignIn>> =
             ServiceCreator.soptService.postLogin(requestSignIn)
-
-
         val response = CoroutineScope(Dispatchers.IO).async {
             call.execute()
         }

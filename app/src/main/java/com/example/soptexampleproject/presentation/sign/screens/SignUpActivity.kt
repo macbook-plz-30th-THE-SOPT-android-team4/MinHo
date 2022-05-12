@@ -11,7 +11,6 @@ import com.example.soptexampleproject.data.remote.ServiceCreator
 import com.example.soptexampleproject.util.ResponseWrapper
 import kotlinx.coroutines.*
 import retrofit2.Call
-import kotlin.coroutines.coroutineContext
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -26,9 +25,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signBtn.setOnClickListener {
             if (binding.nameEdit.text.isNotBlank() && binding.idEdit.text.isNotBlank() && binding.passwordEdit.text.isNotBlank()) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    signUpNetWork()
-                }
+                signUpNetWork()
             } else {
                 Toast.makeText(this, "입력되지 않은 정보가 있습니다.", Toast.LENGTH_SHORT).show()
             }
@@ -36,7 +33,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun signUpNetWork() {
+    private fun signUpNetWork() {
         val requestSignUp = RequestSignUp(
             name = binding.nameEdit.text.toString().trim(),
             email = binding.idEdit.text.toString().trim(),
@@ -46,11 +43,12 @@ class SignUpActivity : AppCompatActivity() {
         val call: Call<ResponseWrapper<ResponseSignUp>> =
             ServiceCreator.soptService.postSignUp(requestSignUp)
 
-        val response = withContext(Dispatchers.IO){
+        val response = CoroutineScope(Dispatchers.IO).async {
             call.execute()
         }
-        val data = withContext(Dispatchers.Main){
-            if (response.isSuccessful) {
+        CoroutineScope(Dispatchers.Main).launch {
+            response.await()
+            if (response.isCompleted) {
                 Toast.makeText(this@SignUpActivity, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@SignUpActivity, SignInActivity::class.java).apply {
                     putExtra("id", binding.idEdit.text.toString())
