@@ -5,8 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
+import com.example.soptexampleproject.R
 import com.example.soptexampleproject.data.remote.github.models.ResponseFollowing
 import com.example.soptexampleproject.databinding.ItemSampleListBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FollowerAdapter :
     ListAdapter<ResponseFollowing, FollowerAdapter.MyViewHolder>(FollowerDiffUtil) {
@@ -22,17 +28,20 @@ class FollowerAdapter :
         holder.onBind(getItem(position))
     }
 
-
     class MyViewHolder(private val binding: ItemSampleListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ResponseFollowing) {
             with(binding) {
                 follower = data
+                CoroutineScope(Dispatchers.Main).launch {
+                    followerIv.load(data.avatar_url){
+                        placeholder(R.drawable.ic_launcher_foreground)
+                        transformations(CircleCropTransformation())
+                    }
+                }
             }
-
         }
     }
-
 
     companion object FollowerDiffUtil : DiffUtil.ItemCallback<ResponseFollowing>() {
 
@@ -42,7 +51,6 @@ class FollowerAdapter :
         ): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(
             oldItem: ResponseFollowing,
             newItem: ResponseFollowing

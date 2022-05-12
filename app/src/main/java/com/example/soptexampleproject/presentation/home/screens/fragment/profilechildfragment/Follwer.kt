@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,38 +28,15 @@ class Follwer : Fragment() {
     private var _binding: FragmentFollwerBinding? = null
     val binding get() = _binding!!
     private lateinit var adapter: FollowerAdapter
-    lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel by activityViewModels<ProfileViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFollwerBinding.inflate(layoutInflater, container, false)
-        initViewModel()
         bindingView()
-        displayFollowingList()
         return binding.root
-
-    }
-
-    private fun getList(userName: String) {
-        if (!userName.isBlank()) {
-            CoroutineScope(Dispatchers.Main).launch {
-                val call: Call<List<ResponseFollowing>> = ServiceCreator.githubService.getFollowing(
-                    userName
-                )
-                val response: Response<List<ResponseFollowing>> =
-                    withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-                        call.execute()
-                    }
-                profileViewModel.followers.value = response.body()
-            }
-        }
-    }
-
-    private fun initViewModel() {
-        val factory = ProfileViewModelFactory()
-        profileViewModel = ViewModelProvider(this, factory)[ProfileViewModel::class.java]
 
     }
 
@@ -71,17 +49,17 @@ class Follwer : Fragment() {
             )
         )
         binding.recyclerFollower.adapter = adapter
+        displayFollowingList()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun displayFollowingList() {
         profileViewModel.followers.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
-        getList((activity as ViewPagerActivity).user)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

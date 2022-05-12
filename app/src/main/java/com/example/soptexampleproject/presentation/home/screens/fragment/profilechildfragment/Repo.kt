@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,7 +27,7 @@ import retrofit2.Response
 class Repo : Fragment() {
     private var _binding: FragmentRepoBinding? = null
     private val binding get() = _binding!!
-    lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel by activityViewModels<ProfileViewModel>()
 
     private lateinit var adapter: RepoAdapter
     override fun onCreateView(
@@ -34,15 +35,8 @@ class Repo : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRepoBinding.inflate(inflater, container, false)
-        initViewModel()
         bindingView()
-        displayFollowingList()
         return binding.root
-    }
-
-    private fun initViewModel() {
-        val factory = ProfileViewModelFactory()
-        profileViewModel = ViewModelProvider(this, factory)[ProfileViewModel::class.java]
     }
 
     private fun bindingView() {
@@ -54,30 +48,14 @@ class Repo : Fragment() {
                 LinearLayoutManager(context).orientation
             )
         )
-    }
-
-    private fun getList(userName: String) {
-        if (!userName.isBlank()) {
-            CoroutineScope(Dispatchers.Main).launch {
-                val call: Call<List<ResponseRepo>> = ServiceCreator.githubService.getRepository(
-                    userName
-                )
-                val response: Response<List<ResponseRepo>> =
-                    withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-                        call.execute()
-                    }
-                profileViewModel.repository.value = response.body()
-            }
-        }
+        displayFollowingList()
     }
 
     private fun displayFollowingList() {
         profileViewModel.repository.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
-        getList((activity as ViewPagerActivity).user)
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
