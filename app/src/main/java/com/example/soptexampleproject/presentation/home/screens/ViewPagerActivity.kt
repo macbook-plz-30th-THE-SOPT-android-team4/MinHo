@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.soptexampleproject.R
 import com.example.soptexampleproject.data.remote.ServiceCreator
-import com.example.soptexampleproject.data.remote.github.models.ResponseFollowing
-import com.example.soptexampleproject.data.remote.github.models.ResponseRepo
 import com.example.soptexampleproject.databinding.ActivityViewPagerBinding
 import com.example.soptexampleproject.presentation.home.screens.fragment.FragmentChangeAdapter
 import com.example.soptexampleproject.presentation.home.viewmodels.ProfileViewModel
@@ -17,8 +15,6 @@ import com.example.soptexampleproject.week3.Fragment.PagerFragmentList
 import com.example.soptexampleproject.week3.Fragment.PagerFragmentProfile
 import com.example.soptexampleproject.week3.Fragment.PagerFragmentSetting
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Response
 
 class ViewPagerActivity : AppCompatActivity() {
     private lateinit var adapter: FragmentChangeAdapter
@@ -68,22 +64,18 @@ class ViewPagerActivity : AppCompatActivity() {
 
     private fun getList(userName: String) {
         if (userName.isNotBlank()) {
-            CoroutineScope(Dispatchers.IO).launch {
-                val call: Call<List<ResponseFollowing>> =
-                    ServiceCreator.githubService.getFollowing(userName)
-                val call2: Call<List<ResponseRepo>> =
-                    ServiceCreator.githubService.getRepository(userName)
-                val response = async { call.execute() }
-                val response2 = async { call2.execute() }
-                withContext(Dispatchers.Main) {
-                    profileViewModel.followers.value = response.await().body()
-                    profileViewModel.repository.value = response2.await().body()
-                }
+            val responseFollower = CoroutineScope(Dispatchers.IO).async {
+                ServiceCreator.githubService.getFollowing(userName)
+            }
+            val responseRepository = CoroutineScope(Dispatchers.IO).async {
+                ServiceCreator.githubService.getRepository(userName)
+            }
+            CoroutineScope(Dispatchers.Main).launch {
+                profileViewModel.followers.value = responseFollower.await().body()
+                profileViewModel.repository.value = responseRepository.await().body()
             }
         }
     }
-
-
     companion object {
         const val FIRST_FRAGMENT = 0
         const val SECOND_FRAGMENT = 1

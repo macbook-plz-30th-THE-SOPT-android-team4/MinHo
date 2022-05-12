@@ -33,12 +33,7 @@ class FollowerAdapter :
         fun onBind(data: ResponseFollowing) {
             with(binding) {
                 follower = data
-                CoroutineScope(Dispatchers.Main).launch {
-                    followerIv.load(data.avatar_url){
-                        placeholder(R.drawable.ic_launcher_foreground)
-                        transformations(CircleCropTransformation())
-                    }
-                }
+
             }
         }
     }

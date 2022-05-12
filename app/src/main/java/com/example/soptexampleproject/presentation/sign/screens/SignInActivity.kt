@@ -2,8 +2,6 @@ package com.example.soptexampleproject.presentation.sign.screens
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -53,11 +51,8 @@ class SignInActivity : AppCompatActivity() {
             email = binding.idEdit.text.toString().trim(),
             password = binding.passwordEdit.text.toString().trim()
         )
-
-        val call: Call<ResponseWrapper<ResponseSignIn>> =
-            ServiceCreator.soptService.postLogin(requestSignIn)
         val response = CoroutineScope(Dispatchers.IO).async {
-            call.execute()
+            ServiceCreator.soptService.postLogin(requestSignIn)
         }
         CoroutineScope(Dispatchers.Main).launch {
             val responseBody = response.await().body()?.data

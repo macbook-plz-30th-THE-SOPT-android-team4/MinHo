@@ -40,11 +40,8 @@ class SignUpActivity : AppCompatActivity() {
             password = binding.passwordEdit.text.toString().trim()
         )
 
-        val call: Call<ResponseWrapper<ResponseSignUp>> =
-            ServiceCreator.soptService.postSignUp(requestSignUp)
-
         val response = CoroutineScope(Dispatchers.IO).async {
-            call.execute()
+            ServiceCreator.soptService.postSignUp(requestSignUp)
         }
         CoroutineScope(Dispatchers.Main).launch {
             response.await()

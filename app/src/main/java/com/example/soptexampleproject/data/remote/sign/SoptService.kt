@@ -6,17 +6,18 @@ import com.example.soptexampleproject.data.remote.sign.models.ResponseSignIn
 import com.example.soptexampleproject.data.remote.sign.models.ResponseSignUp
 import com.example.soptexampleproject.util.ResponseWrapper
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface SoptService {
     @POST("auth/signin")
-    fun postLogin(
+    suspend fun postLogin(
         @Body body: RequestSignIn
-    ): Call<ResponseWrapper<ResponseSignIn>>
+    ): Response<ResponseWrapper<ResponseSignIn>>
 
     @POST("auth/signup")
-    fun postSignUp(
+    suspend fun postSignUp(
         @Body body: RequestSignUp
-    ): Call<ResponseWrapper<ResponseSignUp>>
+    ): Response<ResponseWrapper<ResponseSignUp>>
 }
