@@ -9,6 +9,7 @@ import com.example.soptexampleproject.R
 import com.example.soptexampleproject.databinding.FragmentPagerProfileBinding
 import com.example.soptexampleproject.presentation.home.screens.fragment.profilechildfragment.Follwer
 import com.example.soptexampleproject.presentation.home.screens.fragment.profilechildfragment.Repo
+import com.example.soptexampleproject.util.SOPTSharedPreference
 
 class PagerFragmentProfile : Fragment() {
 
@@ -25,9 +26,14 @@ class PagerFragmentProfile : Fragment() {
         init()
         return binding.root
     }
+
+
     private fun init() {
         val fragment = Follwer()
         val fragment2 = Repo()
+        binding.ivSetting.setOnClickListener {
+
+        }
         binding.btnFollower.isEnabled = isEnabled
         binding.btnRepo.isEnabled = !isEnabled
 

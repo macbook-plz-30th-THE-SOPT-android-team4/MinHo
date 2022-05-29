@@ -17,4 +17,10 @@ interface GithubService {
     suspend fun getRepository(
         @Path("username") username:String
     ): Response<List<ResponseRepo>>
+
+
+    @GET("late_limit")
+    suspend fun getLimit(
+        @Path("username") username:String
+    ): Response<List<ResponseRepo>>
 }

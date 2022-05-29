@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".presentation.onboarding.SampleFragment1">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
+        android:text="Github에 오신걸 환영합니다."
+        style="@style/Widget.TitleTextView.Style"
+        android:gravity="center"
+        android:textColor="@color/purple_800"
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,9 +22,10 @@
     <Button
         android:id="@+id/button"
         style="@style/Widget.BasicButton.Style"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="fragment1"
+        android:layout_margin="@dimen/app_base_space"
+        android:text="다음으로"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

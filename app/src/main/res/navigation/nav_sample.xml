@@ -8,23 +8,39 @@
         android:id="@+id/sampleFragment1"
         android:name="com.example.soptexampleproject.presentation.onboarding.SampleFragment1"
         android:label="fragment_sample1"
-        tools:layout="@layout/fragment_sample1" >
+        tools:layout="@layout/fragment_sample1">
         <action
             android:id="@+id/action_sampleFragment1_to_sampleFragment2"
-            app:destination="@id/sampleFragment2" />
+            app:destination="@id/sampleFragment2"
+            app:popUpTo="@id/sampleFragment1"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/sampleFragment2"
         android:name="com.example.soptexampleproject.presentation.onboarding.SampleFragment2"
         android:label="fragment_sample2"
-        tools:layout="@layout/fragment_sample2" >
+        tools:layout="@layout/fragment_sample2">
         <action
             android:id="@+id/action_sampleFragment2_to_sampleFragment3"
-            app:destination="@id/sampleFragment3" />
+            app:destination="@id/sampleFragment3"
+            app:popUpTo="@id/sampleFragment2"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/sampleFragment3"
         android:name="com.example.soptexampleproject.presentation.onboarding.SampleFragment3"
         android:label="fragment_sample3"
-        tools:layout="@layout/fragment_sample3" />
+        tools:layout="@layout/fragment_sample3">
+        <action
+            android:id="@+id/action_sampleFragment3_to_signInActivity"
+            app:destination="@id/signInActivity"
+            app:popUpTo="@id/sampleFragment3"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <activity
+        android:id="@+id/signInActivity"
+        android:name="com.example.soptexampleproject.presentation.sign.screens.SignInActivity"
+        android:label="activity_sign_in"
+        tools:layout="@layout/activity_sign_in" />
+
 </navigation>
