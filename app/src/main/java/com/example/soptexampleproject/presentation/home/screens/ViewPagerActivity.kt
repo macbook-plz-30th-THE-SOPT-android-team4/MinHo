@@ -66,7 +66,7 @@ class ViewPagerActivity : AppCompatActivity() {
     }
 
     private fun getList(userName: String) {
-        if (userName.isNotBlank()) {
+        /*if (userName.isNotBlank()) {
             val responseFollower = CoroutineScope(Dispatchers.IO).async {
                 ServiceCreator.githubService.getFollowing(userName)
             }
@@ -77,7 +77,7 @@ class ViewPagerActivity : AppCompatActivity() {
                 profileViewModel.followers.value = responseFollower.await().body()
                 profileViewModel.repository.value = responseRepository.await().body()
             }
-        }
+        }*/
     }
     companion object {
         const val FIRST_FRAGMENT = 0

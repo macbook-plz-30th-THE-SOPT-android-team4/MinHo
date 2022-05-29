@@ -41,7 +41,8 @@ dependencies {
 
     // coil
     implementation("io.coil-kt:coil:2.0.0-rc03")
-
+    // preference
+    implementation 'androidx.preference:preference-ktx:1.2.0'
     // 서버 연결을 위한 Retrofit2
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'

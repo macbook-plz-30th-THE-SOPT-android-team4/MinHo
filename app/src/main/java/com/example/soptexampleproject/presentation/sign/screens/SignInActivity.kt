@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.example.soptexampleproject.databinding.ActivitySignInBinding
 import com.example.soptexampleproject.presentation.home.screens.ViewPagerActivity
 import com.example.soptexampleproject.data.remote.sign.models.RequestSignIn

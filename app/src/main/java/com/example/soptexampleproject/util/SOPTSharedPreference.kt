@@ -2,6 +2,7 @@ package com.example.soptexampleproject.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 
 object SOPTSharedPreference {
@@ -14,18 +15,17 @@ object SOPTSharedPreference {
     }*/
 
     fun getAutoLogin(context: Context): Boolean {
-        return context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
-            .getBoolean(AUTO_LOGIN, false)
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(AUTO_LOGIN, false)
     }
 
     fun setAutoLogin(context: Context, value: Boolean) {
-        context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE).edit()
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
             .putBoolean(AUTO_LOGIN, value)
             .apply()
     }
 
     fun setLogout(context: Context) {
-        preferences = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
+        preferences = PreferenceManager.getDefaultSharedPreferences(context)
         preferences.edit()
             .remove(AUTO_LOGIN)
             .clear()
