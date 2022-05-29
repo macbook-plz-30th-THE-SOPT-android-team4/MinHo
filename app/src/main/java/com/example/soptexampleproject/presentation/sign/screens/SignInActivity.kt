@@ -6,23 +6,28 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
+import androidx.lifecycle.lifecycleScope
+import com.example.soptexampleproject.data.model.db.User
+import com.example.soptexampleproject.data.model.db.UserDatabase
+import com.example.soptexampleproject.data.model.db.UserRepository
 import com.example.soptexampleproject.databinding.ActivitySignInBinding
 import com.example.soptexampleproject.presentation.home.screens.ViewPagerActivity
 import com.example.soptexampleproject.data.remote.sign.models.RequestSignIn
 import com.example.soptexampleproject.data.remote.ServiceCreator
-import com.example.soptexampleproject.util.ResponseWrapper
 import com.example.soptexampleproject.util.SOPTSharedPreference
 import kotlinx.coroutines.*
-import retrofit2.Call
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private lateinit var getResultText: ActivityResultLauncher<Intent>
+    private lateinit var repository: UserRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val dao = UserDatabase.getInstance(this).UserDAO()
+        repository = UserRepository(dao)
         initEvent()
         getResultText =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -49,6 +54,16 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun initAutoLogin() {
+
+        /*lifecycleScope.launch {
+            val user = repository.getUser(0)
+            if(user != null) {
+                if(user.autoLogin){
+                    val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }*/
         if(SOPTSharedPreference.getAutoLogin(this)){
             val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java)
             startActivity(intent)
@@ -73,6 +88,7 @@ class SignInActivity : AppCompatActivity() {
                 val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java).apply {
                     putExtra("username", responseBody.body()?.data?.email)
                 }
+                //repository.insertUser(User(userName = binding.idEdit.text.toString(), userPassword = binding.passwordEdit.text.toString(), autoLogin =  binding.cbAutoLogin.isChecked))
                 SOPTSharedPreference.setAutoLogin(applicationContext, binding.cbAutoLogin.isChecked)
                 startActivity(intent)
             } else {
