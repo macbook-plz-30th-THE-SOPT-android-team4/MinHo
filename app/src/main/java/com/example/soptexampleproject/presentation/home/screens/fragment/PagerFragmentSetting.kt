@@ -20,8 +20,7 @@ class PagerFragmentSetting : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentPagerSettingBinding.inflate(inflater, container, false)
         bindingView()
         return binding.root
@@ -39,8 +38,10 @@ class PagerFragmentSetting : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_OPEN && resultCode == Activity.RESULT_OK) {
-            val fullPhotoUri: Uri? = data?.data ?: return
-            binding.imageViewCoil.load(fullPhotoUri)
+            val fullPhotoUri: Uri? = data?.data
+            if (fullPhotoUri != null) {
+                binding.imageView.load(fullPhotoUri)
+            }
         }
     }
     companion object {

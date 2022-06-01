@@ -1,5 +1,8 @@
 package com.example.soptexampleproject.data.model
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class UserData(val userName:String, val introduce:String):Serializable
+
+@Parcelize
+data class UserData(val userName: String, val introduce: String) : Parcelable

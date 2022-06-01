@@ -21,17 +21,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="@dimen/font_size_2"
         android:text="사진을 첨부해주세요"
-        app:layout_constraintTop_toBottomOf="@id/imageViewCoil" />
+        android:textSize="@dimen/font_size_2"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
     <Button
         android:id="@+id/btnUpload"
         style="@style/Widget.SignButton.Style"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/app_base_space"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/sopt_main_purple"
+        android:layout_marginHorizontal="@dimen/app_base_space"
+        android:backgroundTint="@color/purple_800"
         android:text="첨부하기"
         app:layout_constraintTop_toBottomOf="@id/tvImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
