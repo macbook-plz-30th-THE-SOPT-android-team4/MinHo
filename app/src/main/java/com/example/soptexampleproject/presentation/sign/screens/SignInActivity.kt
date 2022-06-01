@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.soptexampleproject.data.model.db.User
 import com.example.soptexampleproject.data.model.db.UserDatabase
 import com.example.soptexampleproject.data.model.db.UserRepository
@@ -62,13 +61,16 @@ class SignInActivity : AppCompatActivity() {
                     val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java)
                     startActivity(intent)
                 }
+            }else{
+                repository.insertUser(User(0, "","",false))
             }
         }*/
-        if(SOPTSharedPreference.getAutoLogin(this)){
+        if (SOPTSharedPreference.getAutoLogin(this)) {
             val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java)
             startActivity(intent)
         }
     }
+
     private fun loginNetWork() {
         val requestSignIn = RequestSignIn(
             email = binding.idEdit.text.toString().trim(),
@@ -88,7 +90,14 @@ class SignInActivity : AppCompatActivity() {
                 val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java).apply {
                     putExtra("username", responseBody.body()?.data?.email)
                 }
-                //repository.insertUser(User(userName = binding.idEdit.text.toString(), userPassword = binding.passwordEdit.text.toString(), autoLogin =  binding.cbAutoLogin.isChecked))
+                /*repository.updateUser(
+                    User(
+                        id = 0,
+                        userName = binding.idEdit.text.toString(),
+                        userPassword = binding.passwordEdit.text.toString(),
+                        autoLogin = binding.cbAutoLogin.isChecked
+                    )
+                )*/
                 SOPTSharedPreference.setAutoLogin(applicationContext, binding.cbAutoLogin.isChecked)
                 startActivity(intent)
             } else {
