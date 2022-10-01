@@ -41,9 +41,11 @@ dependencies {
 
     // coil
     implementation("io.coil-kt:coil:2.0.0-rc03")
-
+    // preference
+    implementation 'androidx.preference:preference-ktx:1.2.0'
     // 서버 연결을 위한 Retrofit2
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     // Retrofit2에서 gson 사용을 위한 컨버터
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     //gson
@@ -57,6 +59,15 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.4.1' // fragment 사용시 추가
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+
+    def room_version = "2.4.2"
+    // Room
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

@@ -6,22 +6,27 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.soptexampleproject.data.model.db.User
+import com.example.soptexampleproject.data.model.db.UserDatabase
+import com.example.soptexampleproject.data.model.db.UserRepository
 import com.example.soptexampleproject.databinding.ActivitySignInBinding
 import com.example.soptexampleproject.presentation.home.screens.ViewPagerActivity
 import com.example.soptexampleproject.data.remote.sign.models.RequestSignIn
-import com.example.soptexampleproject.data.remote.sign.models.ResponseSignIn
 import com.example.soptexampleproject.data.remote.ServiceCreator
-import com.example.soptexampleproject.util.ResponseWrapper
+import com.example.soptexampleproject.util.SOPTSharedPreference
 import kotlinx.coroutines.*
-import retrofit2.Call
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private lateinit var getResultText: ActivityResultLauncher<Intent>
+    private lateinit var repository: UserRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val dao = UserDatabase.getInstance(this).UserDAO()
+        repository = UserRepository(dao)
         initEvent()
         getResultText =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -44,6 +49,26 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpActivity::class.java)
             getResultText.launch(intent)
         }
+        initAutoLogin()
+    }
+
+    private fun initAutoLogin() {
+
+        /*lifecycleScope.launch {
+            val user = repository.getUser(0)
+            if(user != null) {
+                if(user.autoLogin){
+                    val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java)
+                    startActivity(intent)
+                }
+            }else{
+                repository.insertUser(User(0, "","",false))
+            }
+        }*/
+        if (SOPTSharedPreference.getAutoLogin(this)) {
+            val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun loginNetWork() {
@@ -55,16 +80,25 @@ class SignInActivity : AppCompatActivity() {
             ServiceCreator.soptService.postLogin(requestSignIn)
         }
         CoroutineScope(Dispatchers.Main).launch {
-            val responseBody = response.await().body()?.data
-            if (response.isCompleted) {
+            val responseBody = response.await()
+            if (responseBody.isSuccessful) {
                 Toast.makeText(
                     this@SignInActivity,
-                    "${responseBody?.email}님 반갑습니다. ",
+                    "${responseBody.body()?.data?.email}님 반갑습니다. ",
                     Toast.LENGTH_SHORT
                 ).show()
                 val intent = Intent(this@SignInActivity, ViewPagerActivity::class.java).apply {
-                    putExtra("username", responseBody?.email)
+                    putExtra("username", responseBody.body()?.data?.email)
                 }
+                /*repository.updateUser(
+                    User(
+                        id = 0,
+                        userName = binding.idEdit.text.toString(),
+                        userPassword = binding.passwordEdit.text.toString(),
+                        autoLogin = binding.cbAutoLogin.isChecked
+                    )
+                )*/
+                SOPTSharedPreference.setAutoLogin(applicationContext, binding.cbAutoLogin.isChecked)
                 startActivity(intent)
             } else {
                 Toast.makeText(this@SignInActivity, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="환경설정">
+    <CheckBoxPreference
+        android:icon="@drawable/setting_black"
+        android:key="AUTO_LOGIN"
+        android:title="자동로그인" />
+    </PreferenceCategory>
+</PreferenceScreen>
